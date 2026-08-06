@@ -1,0 +1,106 @@
+{
+  "name": "run-output",
+  "displayName": "运行输出 - 代码调试",
+  "description": "code runner, run code: Python, Java, JS, PHP, Go, Rust, Swift, C, C++, C#, Lua, Dart, Shell...21种语言",
+  "version": "1.2.2",
+  "publisher": "zjq",
+  "icon": "icon.png",
+  "repository": {
+		"type": "git",
+		"url": "https://github.com/cnzjq/runner.git"
+	},
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Debuggers",
+    "Other"
+  ],
+  "keywords": [
+    "python",
+    "javascript",
+    "php",
+    "output",
+    "print",
+    "run code"
+  ],
+  "activationEvents": [
+    "onCommand:codeRunnerNative.runCurrentFile",
+    "onCommand:codeRunnerNative.runSelectedCode"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codeRunnerNative.runCurrentFile",
+        "title": "运行当前文件",
+        "icon": "$(play)"
+      },
+      {
+        "command": "codeRunnerNative.runSelectedCode",
+        "title": "运行选中代码",
+        "icon": "$(debug-run)"
+      },
+      {
+        "command": "codeRunnerNative.stopRunningCode",
+        "title": "停止运行代码",
+        "icon": "$(debug-stop)"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "codeRunnerNative.runCurrentFile",
+          "group": "navigation@1",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "codeRunnerNative.runSelectedCode",
+          "group": "navigation@2",
+          "when": "editorHasSelection"
+        }
+      ],
+      "editor/title/run": [
+        {
+          "command": "codeRunnerNative.runCurrentFile",
+          "group": "navigation@1"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "codeRunnerNative.runCurrentFile",
+        "key": "ctrl+alt+n",
+        "mac": "cmd+alt+n",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "codeRunnerNative.runSelectedCode",
+        "key": "ctrl+alt+s",
+        "mac": "cmd+alt+s",
+        "when": "editorHasSelection"
+      }
+    ],
+    "configuration": {
+      "title": "Code Runner Native",
+      "properties": {
+        "codeRunnerNative.showExecutionTime": {
+          "type": "boolean",
+          "default": false,
+          "description": "在输出中显示执行时间"
+        },
+        "codeRunnerNative.clearPreviousOutput": {
+          "type": "boolean",
+          "default": false,
+          "description": "运行前清除之前的输出"
+        },
+        "codeRunnerNative.runInTerminal": {
+          "type": "boolean",
+          "default": false,
+          "description": "在集成终端中运行代码（而非输出通道）"
+        }
+      }
+    }
+  }
+}
